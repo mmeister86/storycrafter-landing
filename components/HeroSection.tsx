@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
-import { RetroGrid } from "@/components/retro-grid";
-import DecisionDemo from "@/components/decision-demo";
+import { RetroGrid } from "./retro-grid";
+import DecisionDemo from "./decision-demo";
 
 export function HeroSection() {
   // Zustand, um zu verfolgen, ob die Demo-Komponente die Schwellenhöhe erreicht hat
