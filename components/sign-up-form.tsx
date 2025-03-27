@@ -48,51 +48,89 @@ export function SignUpForm({
 
     try {
       // Sende Daten an unsere API-Route
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          name: includeNameField ? name : undefined,
-        }),
-      });
+      let retries = 2; // Versuche es bis zu 3 Mal (erster Versuch + 2 Wiederholungen)
+      let success = false;
+      let lastError;
 
-      const data = await response.json();
+      while (retries >= 0 && !success) {
+        try {
+          const response = await fetch("/api/subscribe", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              name: includeNameField ? name : undefined,
+            }),
+          });
 
-      if (!response.ok) {
-        throw new Error(data.error || "Something went wrong");
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || "Something went wrong");
+          }
+
+          // Erfolg markieren, um die Schleife zu beenden
+          success = true;
+
+          // Erfolgreiche Anmeldung
+          setIsSubmitted(true);
+          setEmail("");
+          setName("");
+
+          toast({
+            title: "Success!",
+            description:
+              "You've been added to our waitlist. We'll be in touch soon!",
+          });
+
+          // Rufe onSuccess-Callback auf, wenn vorhanden
+          if (onSuccess) {
+            onSuccess();
+          }
+
+          // Weiterleitung, falls URL angegeben
+          if (redirectUrl) {
+            window.location.href = redirectUrl;
+          }
+        } catch (err) {
+          lastError = err;
+          retries--;
+
+          // Warte kurz vor dem nächsten Versuch
+          if (retries >= 0) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
+        }
       }
 
-      // Erfolgreiche Anmeldung
-      setIsSubmitted(true);
-      setEmail("");
-      setName("");
-
-      toast({
-        title: "Success!",
-        description:
-          "You've been added to our waitlist. We'll be in touch soon!",
-      });
-
-      // Rufe onSuccess-Callback auf, wenn vorhanden
-      if (onSuccess) {
-        onSuccess();
-      }
-
-      // Weiterleitung, falls URL angegeben
-      if (redirectUrl) {
-        window.location.href = redirectUrl;
+      // Wenn nach allen Versuchen kein Erfolg, wirf den letzten Fehler
+      if (!success && lastError) {
+        throw lastError;
       }
     } catch (error) {
       console.error("Signup error:", error);
+
+      // Detailliertere Fehlermeldung basierend auf dem Error-Typ
+      let errorMessage = "Failed to join waitlist. Please try again.";
+
+      if (error instanceof Error) {
+        // Versuche, eine benutzerfreundlichere Nachricht zu erstellen
+        if (error.message.includes("SMTP")) {
+          errorMessage =
+            "Email service is temporarily unavailable. Please try again later.";
+        } else if (error.message.includes("network")) {
+          errorMessage =
+            "Network error. Please check your connection and try again.";
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+      }
+
       toast({
-        title: "Oops!",
-        description:
-          error instanceof Error
-            ? error.message
-            : "Failed to join waitlist. Please try again.",
+        title: "Signup Failed",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {

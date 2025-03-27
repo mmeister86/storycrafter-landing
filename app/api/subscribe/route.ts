@@ -64,18 +64,35 @@ export async function POST(request: Request) {
     console.log(`- USER: ${process.env.EMAIL_USER}`);
     console.log(`- NOTIFICATION_EMAIL: ${process.env.NOTIFICATION_EMAIL}`);
 
-    // Setup email transport - in production, use your actual SMTP service
-    // For development, you might use a service like Mailtrap, Sendgrid, etc.
+    // Save signup data to file first - this ensures we don't lose signups even if email fails
+    // This also reduces the risk of duplicate signups in case of retries
+    const dataSaved = await saveSignupData(email, name);
+    if (!dataSaved) {
+      console.error("Failed to save signup data to file");
+      // Continue anyway to try sending emails
+    } else {
+      console.log("Signup data saved successfully");
+    }
+
+    // Setup email transport - using the confirmed working configuration
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST || "smtp.example.com",
+      host: process.env.EMAIL_HOST || "smtp.gmail.com",
       port: parseInt(process.env.EMAIL_PORT || "587"),
       secure: process.env.EMAIL_SECURE === "true",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        // Für Gmail empfohlen: SSL/TLS-Validierung nicht erzwingen
+        rejectUnauthorized: false,
+      },
       debug: true, // Enable debugging
+      logger: true, // Aktiviert detaillierte Logging-Informationen
     });
+
+    let notificationSent = false;
+    let userEmailSent = false;
 
     // Verify the transporter configuration
     try {
@@ -83,11 +100,14 @@ export async function POST(request: Request) {
       console.log("SMTP connection verified successfully");
     } catch (verifyError: any) {
       console.error("SMTP verification failed:", verifyError);
+      console.error("Error details:", {
+        code: verifyError.code,
+        command: verifyError.command,
+        response: verifyError.response,
+        responseCode: verifyError.responseCode,
+      });
       throw new Error(`SMTP verification failed: ${verifyError.message}`);
     }
-
-    // Save signup data to file - this ensures we don't lose signups even if notification email fails
-    await saveSignupData(email, name);
 
     try {
       // Try to send notification to admin
@@ -112,6 +132,7 @@ export async function POST(request: Request) {
         `,
       });
       console.log("Notification email sent successfully:", notificationResult);
+      notificationSent = true;
     } catch (notificationError: any) {
       console.error("Failed to send notification email:", notificationError);
       // Continue with user email even if admin notification fails
@@ -140,17 +161,29 @@ export async function POST(request: Request) {
         "User confirmation email sent successfully:",
         userEmailResult
       );
+      userEmailSent = true;
     } catch (userEmailError: any) {
       console.error("Failed to send user confirmation email:", userEmailError);
-      throw userEmailError; // Re-throw to trigger the error response
+      // We can return a partial success if at least the data was saved
+      if (dataSaved) {
+        return NextResponse.json({
+          success: true,
+          message: "Subscribed to waitlist but confirmation email failed",
+          emailStatus: "failed",
+        });
+      } else {
+        throw userEmailError; // Re-throw if both save and email failed
+      }
     }
 
-    // Return success response
+    // Return success response with status info
     return NextResponse.json({
       success: true,
       message: "Successfully subscribed to waitlist",
+      notificationSent,
+      userEmailSent,
     });
-  } catch (error) {
+  } catch (error: any) {
     // Log detailed error information for debugging
     console.error("Subscription error:", error);
 
