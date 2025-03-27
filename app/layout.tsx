@@ -36,12 +36,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <script
-        defer
-        src="https://umami.matthias.lol/script.js"
-        data-website-id="e976c4a1-a093-42a0-982b-577cde525aa4"
-      ></script>
       <body className={`${inter.className} antialiased`}>
+        <script
+          defer
+          src="https://umami.matthias.lol/script.js"
+          data-website-id="e976c4a1-a093-42a0-982b-577cde525aa4"
+        ></script>
         {children}
         <Toaster />
       </body>
