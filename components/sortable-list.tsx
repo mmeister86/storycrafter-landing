@@ -86,7 +86,7 @@ export function SortableList<T>({
       activationConstraint: {
         distance: 3,
         tolerance: 5,
-        delay: 150,
+        delay: 50,
       },
     }),
     useSensor(KeyboardSensor, {
