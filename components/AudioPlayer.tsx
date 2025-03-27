@@ -21,6 +21,8 @@ const AudioPlayer = () => {
     // Set audio to loop
     if (audioRef.current) {
       audioRef.current.loop = true;
+      // Set volume to 50% of normal loudness (0.5 is full volume, so 0.25 is 50% of that)
+      audioRef.current.volume = 0.5;
 
       // Add error handler
       audioRef.current.onerror = () => {
@@ -86,9 +88,9 @@ const AudioPlayer = () => {
       {isLoading ? (
         <Loader2 className="h-4 w-4 text-[#1a2436] group-hover:text-white animate-spin" />
       ) : isPlaying ? (
-        <Pause className="h-4 w-4 text-[#1a2436] group-hover:text-[#e6a54c] fill-[#1a2436] group-hover:fill-[#e6a54c]" />
+        <Pause className="h-4 w-4 text-white group-hover:text-[#e6a54c] fill-white group-hover:fill-[#e6a54c]" />
       ) : (
-        <Play className="h-4 w-4 text-[#1a2436] group-hover:text-[#e6a54c] fill-[#1a2436] group-hover:fill-[#e6a54c]" />
+        <Play className="h-4 w-4 text-white group-hover:text-[#e6a54c] fill-white group-hover:fill-[#e6a54c]" />
       )}
       <span className="ml-2 hidden sm:inline">
         {isLoading ? "Loading..." : isPlaying ? "Pause" : "Play"} Music

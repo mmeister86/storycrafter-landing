@@ -74,7 +74,8 @@ export default function DecisionDemo() {
   };
 
   const handleClose = () => {
-    setIsVisible(false);
+    // Disabled functionality - keeping the button but preventing closing
+    console.log("Close button clicked but functionality disabled");
   };
 
   const handleChoiceTextChange = useCallback(
@@ -141,8 +142,8 @@ export default function DecisionDemo() {
         {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center font-mono text-amber-500 bg-black border-2 border-amber-500 rounded-none hover:bg-amber-900/30 hover:text-amber-300"
-          aria-label="Close decision block"
+          className="absolute top-2 right-2 z-20 w-8 h-8 flex items-center justify-center font-mono text-amber-500 bg-black border-2 border-amber-500 rounded-none hover:bg-amber-900/30 hover:text-amber-300 opacity-50"
+          aria-label="Close decision block (disabled)"
         >
           <X size={16} />
         </button>

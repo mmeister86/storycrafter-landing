@@ -83,12 +83,18 @@ export function Decision({
   };
 
   const handleRemoveChoice = (choiceId: string) => {
-    const updatedChoices = choices.filter((choice) => choice.id !== choiceId);
+    // Disabled functionality - keeping the button but preventing removal
+    console.log("Remove button clicked but functionality disabled");
+  };
+
+  const handleChoicesChange = (updatedChoices: Choice[]) => {
+    // Prevent removal of choices
+    if (updatedChoices.length < choices.length) {
+      console.log("Removing choices is disabled");
+      return;
+    }
     setChoices(updatedChoices);
     onChoicesChange?.(updatedChoices);
-    if (editingChoiceId === choiceId) {
-      setEditingChoiceId(null);
-    }
   };
 
   const handleChoiceTextChange = (choiceId: string, text: string) => {
@@ -213,10 +219,10 @@ export function Decision({
                   e.stopPropagation();
                   handleRemoveChoice(choice.id);
                 }}
-                className="text-amber-500 hover:text-amber-300 hover:bg-amber-900/30 transition-colors duration-200 ease-in-out"
+                className="text-amber-500 hover:text-amber-300 hover:bg-amber-900/30 transition-colors duration-200 ease-in-out opacity-50"
               >
                 <Trash2 className="h-4 w-4" />
-                <span className="sr-only">Remove choice</span>
+                <span className="sr-only">Remove choice (disabled)</span>
               </Button>
             </CardContent>
           </Card>
