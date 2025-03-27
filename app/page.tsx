@@ -3,6 +3,7 @@ import Image from "next/image";
 import { SignUpForm } from "@/components/sign-up-form";
 import { RetroGrid } from "@/components/retro-grid";
 import DecisionDemo from "@/components/decision-demo";
+import AudioPlayer from "@/components/AudioPlayer";
 import {
   BookOpen,
   Sparkles,
@@ -23,7 +24,7 @@ export default function LandingPage() {
               StoryCrafter
             </span>
           </Link>
-          <nav className="flex gap-4 sm:gap-6">
+          <nav className="flex gap-4 sm:gap-6 items-center">
             <Link
               href="#features"
               className="text-sm font-medium hover:text-[#e6a54c] transition-colors"
@@ -36,6 +37,7 @@ export default function LandingPage() {
             >
               Sign Up
             </Link>
+            <AudioPlayer />
           </nav>
         </div>
       </header>
@@ -193,32 +195,35 @@ export default function LandingPage() {
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t border-[#2a3042] bg-[#131b2a]">
-        <div className="flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-[#e6a54c]" />
-          <p className="text-sm text-[#a7a7a7]">
-            &copy; {new Date().getFullYear()} StoryCrafter. All rights reserved.
-          </p>
+        <div className="container mx-auto flex flex-col gap-2 sm:flex-row items-center">
+          <div className="flex items-center gap-2">
+            <BookOpen className="h-5 w-5 text-[#e6a54c]" />
+            <p className="text-sm text-[#a7a7a7]">
+              &copy; {new Date().getFullYear()} StoryCrafter. All rights
+              reserved.
+            </p>
+          </div>
+          <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+            <Link
+              href="#"
+              className="text-xs text-[#a7a7a7] hover:text-[#e6a54c] transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="#"
+              className="text-xs text-[#a7a7a7] hover:text-[#e6a54c] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="#"
+              className="text-xs text-[#a7a7a7] hover:text-[#e6a54c] transition-colors"
+            >
+              Contact
+            </Link>
+          </nav>
         </div>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="#"
-            className="text-xs text-[#a7a7a7] hover:text-[#e6a54c] transition-colors"
-          >
-            Terms of Service
-          </Link>
-          <Link
-            href="#"
-            className="text-xs text-[#a7a7a7] hover:text-[#e6a54c] transition-colors"
-          >
-            Privacy Policy
-          </Link>
-          <Link
-            href="#"
-            className="text-xs text-[#a7a7a7] hover:text-[#e6a54c] transition-colors"
-          >
-            Contact
-          </Link>
-        </nav>
       </footer>
     </div>
   );
