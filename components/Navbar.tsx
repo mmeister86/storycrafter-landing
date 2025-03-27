@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { BookOpen, Menu, X } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
@@ -41,7 +43,7 @@ export function Navbar() {
 
           {/* Hamburger-Menü Button - nur auf kleinen Bildschirmen sichtbar */}
           <button
-            className="sm:hidden ml-2 text-white hover:text-[#e6a54c]"
+            className="sm:hidden ml-4 text-white hover:text-[#e6a54c]"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -57,17 +59,17 @@ export function Navbar() {
       {/* Mobile-Menü - nur sichtbar, wenn geöffnet */}
       {mobileMenuOpen && (
         <div className="sm:hidden absolute top-16 left-0 right-0 bg-[#1b263b] border-b border-[#2a3042] z-50">
-          <div className="flex flex-col p-4 space-y-4">
+          <div className="flex flex-col p-6 space-y-6">
             <Link
               href="#features"
-              className="text-sm font-medium hover:text-[#e6a54c] transition-colors"
+              className="text-base font-medium hover:text-[#e6a54c] transition-colors py-2"
               onClick={toggleMobileMenu}
             >
               Features
             </Link>
             <Link
               href="#signup"
-              className="text-sm font-medium hover:text-[#e6a54c] transition-colors"
+              className="text-base font-medium hover:text-[#e6a54c] transition-colors py-2"
               onClick={toggleMobileMenu}
             >
               Sign Up
