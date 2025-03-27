@@ -59,7 +59,7 @@ export function HeroSection() {
         <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-8xl/[5rem] text-[#e6a54c] relative scanline-text shadow-glow animation-flicker">
+              <h1 className="text-7xl font-bold tracking-tighter sm:text-6xl xl:text-8xl/[5rem] text-[#e6a54c] relative scanline-text shadow-glow animation-flicker">
                 Build and play captivating stories
               </h1>
               <p className="max-w-[700px] text-white py-4 md:text-xl">
