@@ -88,7 +88,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        grid: "grid 30s linear infinite", // Slower animation (30s instead of 15s)
+        grid: "grid 40s linear infinite",
         float: "float 3s ease-in-out infinite",
         "glow-pulse": "glow-pulse 4s ease-in-out infinite",
         "smooth-appear": "smooth-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1)",

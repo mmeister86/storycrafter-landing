@@ -59,14 +59,16 @@ export function HeroSection() {
         <div className="grid gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none text-[#e6a54c]">
-                Craft Your Stories with <br />
-                AI-Powered Precision
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-8xl/[5rem] text-[#e6a54c] relative scanline-text shadow-glow animation-flicker">
+                Build and play captivating stories
               </h1>
-              <p className="max-w-[600px] text-[#a7a7a7] md:text-xl">
-                StoryCrafter is coming soon — an innovative platform that helps
-                writers, game developers, and content creators build rich,
-                immersive narratives with AI assistance.
+              <p className="max-w-[700px] text-white py-4 md:text-xl">
+                StoryCrafter is coming - an intuitive platform with an intuitive
+                drag-and-drop builder that lets you create interactive stories
+                effortlessly. Create your world and characters, share your
+                creations or explore stories from our growing community of
+                storytellers. All of this and more with a pleasing 90s retro
+                aesthetic.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">

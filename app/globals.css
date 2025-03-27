@@ -45,3 +45,76 @@
   }
 }
 
+/* Neon-Glow-Effekt für Text */
+.shadow-glow {
+  text-shadow: 0 0 5px rgba(230, 165, 76, 0.5), 0 0 10px rgba(230, 165, 76, 0.3),
+    0 0 15px rgba(230, 165, 76, 0.2);
+}
+
+/* Scanline-Effekt für Text */
+.scanline-text {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(15, 21, 33, 0.3) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Flimmer-Animation für Neon-Effekt */
+.animation-flicker {
+  animation: textFlicker 3s infinite alternate;
+}
+
+@keyframes textFlicker {
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(230, 165, 76, 0.5),
+      0 0 10px rgba(230, 165, 76, 0.3), 0 0 15px rgba(230, 165, 76, 0.2);
+  }
+
+  8%,
+  9.5% {
+    text-shadow: none;
+  }
+
+  9%,
+  9.2%,
+  9.4%,
+  9.6% {
+    text-shadow: 0 0 5px rgba(230, 165, 76, 0.5),
+      0 0 10px rgba(230, 165, 76, 0.3), 0 0 15px rgba(230, 165, 76, 0.2);
+  }
+
+  75% {
+    text-shadow: 0 0 5px rgba(230, 165, 76, 0.6),
+      0 0 10px rgba(230, 165, 76, 0.4), 0 0 15px rgba(230, 165, 76, 0.3);
+  }
+}
+
+/* Animation für RetroGrid mit Glow-Effekt */
+@keyframes gridGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(230, 165, 76, 0.3),
+      0 0 30px rgba(230, 165, 76, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(230, 165, 76, 0.4),
+      0 0 40px rgba(230, 165, 76, 0.3);
+  }
+}

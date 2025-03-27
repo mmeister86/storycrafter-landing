@@ -22,9 +22,17 @@ export function RetroGrid({
           className={cn(
             "animate-grid",
             "[background-repeat:repeat] [background-size:60px_60px] [height:300vh] [inset:0%_0px] [margin-left:-50%] [transform-origin:100%_0_0] [width:600vw]",
-            // Increased opacity and thicker grid lines
-            "[background-image:linear-gradient(to_right,rgba(255,215,0,0.4)_2px,transparent_0),linear-gradient(to_bottom,rgba(255,215,0,0.4)_2px,transparent_0)]"
+            // Increased opacity and thicker grid lines with glow effect
+            "[background-image:linear-gradient(to_right,rgba(255,215,0,0.4)_2px,transparent_0),linear-gradient(to_bottom,rgba(255,215,0,0.4)_2px,transparent_0)]",
+            // Add box shadow for neon glow with animation
+            "shadow-[0_0_15px_rgba(230,165,76,0.3),0_0_30px_rgba(230,165,76,0.2)]"
           )}
+          style={
+            {
+              animation:
+                "grid 60s linear infinite, gridGlow 4s ease-in-out infinite",
+            } as React.CSSProperties
+          }
         />
       </div>
 
