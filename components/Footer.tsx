@@ -14,14 +14,6 @@ export function Footer() {
             &copy; {new Date().getFullYear()} StoryCrafter. All rights reserved.
           </p>
         </div>
-        <nav className="sm:ml-auto flex gap-6 sm:gap-8">
-          <Link
-            href="#"
-            className="text-sm text-[#a7a7a7] hover:text-[#e6a54c] transition-colors py-1"
-          >
-            Contact
-          </Link>
-        </nav>
       </div>
     </footer>
   );

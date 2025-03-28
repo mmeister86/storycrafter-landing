@@ -22,7 +22,7 @@ const AudioPlayer = () => {
     if (audioRef.current) {
       audioRef.current.loop = true;
       // Set volume to 50% of normal loudness (0.5 is full volume, so 0.25 is 50% of that)
-      audioRef.current.volume = 0.15;
+      audioRef.current.volume = 0.005;
 
       // Add error handler
       audioRef.current.onerror = () => {
