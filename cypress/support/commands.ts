@@ -9,9 +9,9 @@
 // ***********************************************
 
 // -- This is a parent command --
-Cypress.Commands.add('login', (email, password) => { 
+Cypress.Commands.add("login", (email, password) => {
   // Add login implementation here
-})
+});
 
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
@@ -23,3 +23,13 @@ Cypress.Commands.add('login', (email, password) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+declare namespace Cypress {
+  interface Chainable {
+    tab(): Chainable<JQuery<HTMLElement>>;
+  }
+}
+
+Cypress.Commands.add("tab", { prevSubject: "element" }, (subject) => {
+  return cy.wrap(subject).type("{tab}");
+});

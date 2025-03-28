@@ -12,6 +12,7 @@ export function FeaturesSection() {
   return (
     <section
       id="features"
+      data-test="features-section"
       className="w-full py-12 md:py-24 lg:py-32 bg-[#0f1521]"
     >
       <div className="container px-4 md:px-6">

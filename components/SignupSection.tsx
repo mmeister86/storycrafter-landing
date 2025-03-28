@@ -6,6 +6,7 @@ export function SignupSection() {
   return (
     <section
       id="signup"
+      data-test="signup-section"
       className="w-full py-12 md:py-16 lg:py-20 bg-[#131b2a] border-y border-[#2a3042]"
     >
       <div className="container px-4 md:px-6">
