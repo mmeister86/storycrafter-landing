@@ -49,7 +49,7 @@ export default function RootLayout({
           colorPrimary: "#c48b3c",
           colorTextOnPrimaryBackground: "#0f1521",
           colorBackground: "#0f1521",
-          colorInputBackground: "#131b2a",
+          colorInputBackground: "#305C87",
           colorInputText: "#ffffff",
           colorTextSecondary: "#a7a7a7",
           fontFamily: "Inter, sans-serif",
@@ -57,14 +57,12 @@ export default function RootLayout({
         },
         elements: {
           rootBox: "bg-[#0f1521]",
-          card: "shadow-lg rounded-lg bg-[#131b2a]/50 border border-[#2a3042] backdrop-blur-sm max-w-[400px] w-full mx-auto",
-          header: "gap-2",
-          headerTitle: "text-2xl font-bold text-[#e6a54c]",
-          headerSubtitle: "text-[#a7a7a7] text-center",
-          main: "gap-2",
-          form: "gap-2",
+          card: "shadow-lg rounded-lg bg-[#131b2a]/50 border border-[#2a3042] backdrop-blur-sm max-w-[800px] w-full mx-auto",
+          header: "hidden",
+          main: "gap-4",
+          form: "gap-4",
           formFieldInput:
-            "border border-[#2a3042] rounded-md bg-[#131b2a]/50 text-white focus:border-[#c48b3c] focus:ring-[#c48b3c] w-full",
+            "border border-[#2a3042] rounded-md bg-[#305C87]/50 text-white focus:border-[#c48b3c] focus:ring-[#c48b3c] w-full",
           formFieldLabel: "text-sm font-medium text-[#a7a7a7]",
           formButtonPrimary:
             "bg-[#c48b3c] hover:bg-[#e6a54c] text-[#0f1521] shadow transition-colors w-full rounded-md py-2",
