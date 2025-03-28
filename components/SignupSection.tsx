@@ -1,4 +1,6 @@
-import { SignUpForm } from "./sign-up-form";
+"use client";
+
+import { Waitlist } from "@clerk/nextjs";
 
 export function SignupSection() {
   return (
@@ -22,9 +24,8 @@ export function SignupSection() {
               (a.k.a. me).
             </p>
           </div>
-          <div className="w-full max-w-md mt-8">
-            <SignUpForm />
-          </div>
+
+          <Waitlist />
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 import { HeroSection } from "../components/HeroSection";
-import { SignupSection } from "../components/SignupSection";
 import { FeaturesSection } from "../components/FeaturesSection";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { SignupSection } from "@/components/SignupSection";
 
 export default function LandingPage() {
   return (
@@ -14,7 +14,6 @@ export default function LandingPage() {
         {/* Neue HeroSection-Komponente verwenden */}
         <HeroSection />
 
-        {/* Use the SignupSection component */}
         <SignupSection />
 
         {/* Use the new FeaturesSection component */}
