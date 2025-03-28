@@ -13,19 +13,6 @@ Cypress.Commands.add('login', (email, password) => {
   // Add login implementation here
 })
 
-// -- This is a tab command to add keyboard navigation --
-Cypress.Commands.add('tab', { prevSubject: 'optional' }, (subject) => {
-  const eventOptions = { bubbles: true, cancelable: true, key: 'Tab', keyCode: 9 }
-  
-  if (subject) {
-    cy.wrap(subject).trigger('keydown', eventOptions)
-  } else {
-    cy.focused().trigger('keydown', eventOptions)
-  }
-
-  return cy.document().trigger('keyup', eventOptions)
-})
-
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //

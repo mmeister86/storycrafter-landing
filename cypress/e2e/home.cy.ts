@@ -26,16 +26,10 @@ describe('Home Page', () => {
   })
 
   it('allows keyboard navigation through interactive elements', () => {
-    cy.get('body').tab()
+    // Using Tab key directly instead of custom command
+    cy.get('body').focus().type('{tab}')
     cy.focused().should('exist')
   })
 })
 
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      tab(options?: any): Chainable<JQuery<HTMLElement>>
-      login(email: string, password: string): Chainable<void>
-    }
-  }
-}
+// Removed custom tab command that was causing type errors
